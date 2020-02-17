@@ -1,0 +1,156 @@
+openapi: 3.0.0
+info:
+  title: OpenBanking
+  version: '1.0'
+  description: OpenBanking
+  contact:
+    name: Johan Boissard
+    url: digis.io
+    email: johan@digis.io
+servers:
+  - url: 'https://banking.digis.io'
+paths:
+  /statements:
+    post:
+      summary: ''
+      operationId: post-statements
+      responses:
+        '200':
+          description: OK
+      description: fetches the list of transactions
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                client:
+                  $ref: '#/components/schemas/options'
+                startDate:
+                  type: string
+                endDate:
+                  type: string
+              required:
+                - client
+                - startDate
+                - endDate
+        description: ''
+  /payment/xml:
+    post:
+      summary: ''
+      operationId: payment-xml
+      responses:
+        '200':
+          description: OK
+      description: executes payment
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                options:
+                  $ref: '#/components/schemas/options'
+                xml:
+                  type: string
+              required:
+                - options
+                - xml
+    parameters: []
+  /payment:
+    post:
+      summary: ''
+      operationId: post-payment
+      responses:
+        '200':
+          description: OK
+      description: executes payment
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                options:
+                  $ref: '#/components/schemas/options'
+                payment:
+                  $ref: '#/components/schemas/payment'
+              required:
+                - options
+                - payment
+components:
+  schemas:
+    options:
+      title: options
+      type: object
+      properties:
+        key:
+          type: string
+        partnerId:
+          type: string
+        userId:
+          type: string
+        username:
+          type: string
+        clientId:
+          type: string
+        hostId:
+          type: string
+        url:
+          type: string
+        passphrase:
+          type: string
+      required:
+        - key
+        - partnerId
+        - userId
+        - username
+        - clientId
+        - hostId
+        - url
+        - passphrase
+      description: security parameters that need to be passed with every requests to be identified and authorized
+    payment:
+      title: payment
+      type: object
+      properties:
+        debitor:
+          $ref: '#/components/schemas/debitor'
+        creditor:
+          type: array
+          items:
+            $ref: '#/components/schemas/creditor'
+      required:
+        - debitor
+        - creditor
+    debitor:
+      title: debitor
+      type: object
+      properties:
+        name:
+          type: string
+        iban:
+          type: string
+        bic:
+          type: string
+        '':
+          type: string
+    creditor:
+      title: creditor
+      type: object
+      properties:
+        amount:
+          type: number
+        name:
+          type: string
+        iban:
+          type: string
+        bic:
+          type: string
+        referenceNumber:
+          type: string
+      required:
+        - amount
+        - name
+        - iban
+        - bic
