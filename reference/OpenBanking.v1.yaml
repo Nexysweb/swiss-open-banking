@@ -8,7 +8,7 @@ info:
     url: digis.io
     email: johan@digis.io
 servers:
-  - url: 'https://banking.digis.io'
+  - url: 'https://notavailablehere-willbecommunicated.com'
 paths:
   /statements:
     post:
