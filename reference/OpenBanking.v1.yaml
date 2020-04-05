@@ -78,6 +78,79 @@ paths:
               required:
                 - options
                 - payment
+  /init:
+    post:
+      summary: Initialize
+      operationId: post-init
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  key:
+                    type: string
+                required:
+                  - key
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                options:
+                  $ref: '#/components/schemas/options'
+              required:
+                - options
+        description: 'First request to bank,  Note that the `key` argument is empty at this stage'
+  /init/bank:
+    post:
+      summary: Initialize bank
+      operationId: post-init-bank
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  key:
+                    type: string
+      description: Fetches bank keys. (After letter has been sent and account freed). The key returned at this stage overrides the previous one.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                options:
+                  $ref: '#/components/schemas/options'
+        description: ''
+  /letter:
+    post:
+      summary: ''
+      operationId: post-letter
+      responses:
+        '200':
+          description: HTML of the letter to send to the bank
+      description: 'if successful, returns the letter to send to the bank.'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                options:
+                  $ref: '#/components/schemas/options'
+                bankName:
+                  type: string
+              required:
+                - options
+                - bankName
+        description: regular `options` object with the key returned in the previous endpoint
 components:
   schemas:
     options:
