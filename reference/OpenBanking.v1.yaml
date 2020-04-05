@@ -119,6 +119,25 @@ paths:
                 properties:
                   key:
                     type: string
+                  hash:
+                    type: object
+                    required:
+                      - X002
+                      - E002
+                    description: EBICS bank key (hashes)
+                    properties:
+                      X002:
+                        type: string
+                        description: |-
+                          Hash value X002 encryption
+                          e.g. 62 2D 5F D1 16 C9 90 F8 99 80 15 5C DB 93 23 47 70 86 EA 80
+                      E002:
+                        type: string
+                        description: |-
+                          Hash value E002 encryption
+                          e.g. 62 2D 5F D1 16 C9 90 F8 99 80 15 5C DB 93 23 47 70 86 EA 80
+                required:
+                  - hash
       description: Fetches bank keys. (After letter has been sent and account freed). The key returned at this stage overrides the previous one.
       requestBody:
         content:
