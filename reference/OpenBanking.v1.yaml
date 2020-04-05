@@ -2,7 +2,13 @@ openapi: 3.0.0
 info:
   title: OpenBanking
   version: '1.0'
-  description: OpenBanking
+  description: |-
+    OpenBanking
+
+    Test servers
+    Credit Suisse: https://iso20022test.credit-suisse.com/user/settings/ebics
+    ZKB: https://testplattform.zkb.ch/user/settings/ebics
+    Raiffeisen: https://isotestbank.raiffeisen.ch/corporates/user/settings/ebics
   contact:
     name: Johan Boissard
     url: digis.io
