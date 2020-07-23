@@ -21,7 +21,8 @@ servers:
 paths:
   /statements:
     post:
-      summary: ''
+      tags:
+        - Invoice Items
       operationId: post-statements
       responses:
         '200':
@@ -46,7 +47,8 @@ paths:
         description: ''
   /payment/xml:
     post:
-      summary: ''
+      tags:
+        - gfds
       operationId: payment-xml
       responses:
         '200':
@@ -68,6 +70,8 @@ paths:
     parameters: []
   /payment:
     post:
+      tags:
+        - gfds
       summary: ''
       operationId: post-payment
       responses:
@@ -114,8 +118,14 @@ paths:
               required:
                 - options
         description: 'First request to bank,  Note that the `key` argument is empty at this stage'
+      description: Initialize connection
+      tags:
+        - gfds
+        - Invoice Items
   /init/bank:
     post:
+      tags:
+        - gfds
       summary: Initialize bank
       operationId: post-init-bank
       responses:
@@ -159,7 +169,8 @@ paths:
         description: ''
   /letter:
     post:
-      summary: ''
+      tags:
+        - gfds
       operationId: post-letter
       responses:
         '200':
@@ -255,3 +266,6 @@ components:
         - name
         - iban
         - bic
+tags:
+  - name: gfds
+  - name: Invoice Items
