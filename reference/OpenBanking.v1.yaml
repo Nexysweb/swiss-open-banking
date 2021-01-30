@@ -12,12 +12,27 @@ info:
     * Credit Suisse: https://iso20022test.credit-suisse.com/user/settings/ebics
     * ZKB: https://testplattform.zkb.ch/user/settings/ebics
     * Raiffeisen: https://isotestbank.raiffeisen.ch/corporates/user/settings/ebics
+
+
+    ## Get started with Docker
+
+    `docker pull nexyssystem/openbanking`
+    `docker run --name openbanking -p 3000:3000 -d -e CONFIG=xxx nexyssystem/openbanking`
+
+    `xxx` is to be replaced with your personal token.
+
+    Dockerhub: https://hub.docker.com/r/nexyssystem/openbanking
+
+    ## Resources
+
+    - Setup: https://vimeo.com/496429453/97ddc65c38
+    - Demo: https://vimeo.com/496430152/696b28a6db
   contact:
     name: Johan Boissard
     url: digis.ch
     email: johan@digis.ch
 servers:
-  - url: 'https:/tobedeployedonpremise.com'
+  - url: 'https://swissbanking.tech'
 paths:
   /statements:
     post:
@@ -49,7 +64,7 @@ paths:
     post:
       tags:
         - endpoint
-      operationId: post-statements
+      operationId: post-statements-raw
       responses:
         '200':
           description: OK
@@ -215,7 +230,6 @@ paths:
                 - options
                 - bankName
         description: regular `options` object with the key returned in the previous endpoint
-  
 components:
   schemas:
     options:
