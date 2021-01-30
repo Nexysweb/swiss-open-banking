@@ -45,6 +45,32 @@ paths:
                 - startDate
                 - endDate
         description: ''
+  /statements/raw:
+    post:
+      tags:
+        - endpoint
+      operationId: post-statements
+      responses:
+        '200':
+          description: OK
+      description: fetches the list of transactions
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                client:
+                  $ref: '#/components/schemas/options'
+                startDate:
+                  type: string
+                endDate:
+                  type: string
+              required:
+                - client
+                - startDate
+                - endDate
+        description: ''
   /payment/xml:
     post:
       tags:
@@ -189,6 +215,7 @@ paths:
                 - options
                 - bankName
         description: regular `options` object with the key returned in the previous endpoint
+  
 components:
   schemas:
     options:
